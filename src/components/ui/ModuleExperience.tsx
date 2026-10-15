@@ -8,7 +8,12 @@ import { ecosystem, photoUrl } from '@/lib/ecosystem';
 export default function ModuleExperience({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const index = ecosystem.findIndex(item => pathname === `/${item.slug}`);
-  if (index === -1) return <>{children}</>;
+  if (index === -1) {
+    if (['/dashboard', '/messages', '/admin'].includes(pathname)) {
+      return <div className="support-workspace module-app-layout">{children}</div>;
+    }
+    return <>{children}</>;
+  }
   const item = ecosystem[index];
   const next = ecosystem[(index + 1) % ecosystem.length];
   return <div className="module-experience" key={pathname}>

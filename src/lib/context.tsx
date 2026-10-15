@@ -66,11 +66,18 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
-  const [state, setState] = useState(() => getInitialState());
+  // Match the server's first render before restoring this browser's workspace.
+  const [state, setState] = useState(() => getInitialState(false));
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    saveState(state);
-  }, [state]);
+    setState(getInitialState());
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (hydrated) saveState(state);
+  }, [state, hydrated]);
 
   const switchUserRole = (role: UserRole) => {
     const target = state.users.find(u => u.role === role) || {

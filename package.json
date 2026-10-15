@@ -6,11 +6,10 @@
     "dev": "cross-env NEXT_DISABLE_SWC_LOCKFILE_PATCH=1 next dev",
     "build": "cross-env NEXT_DISABLE_SWC_LOCKFILE_PATCH=1 next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --test tests/persistence.test.cjs"
   },
   "dependencies": {
-    "@react-three/drei": "^9.114.0",
-    "@react-three/fiber": "^8.17.10",
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
     "framer-motion": "^11.11.9",
@@ -20,8 +19,7 @@
     "react-dom": "^18.3.1",
     "recharts": "^2.13.0",
     "sqlite3": "^5.1.7",
-    "tailwind-merge": "^2.5.4",
-    "three": "^0.169.0"
+    "tailwind-merge": "^2.5.4"
   },
   "optionalDependencies": {
     "@next/swc-win32-x64-msvc": "14.2.15"
@@ -30,7 +28,6 @@
     "@types/node": "^20.16.14",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
-    "@types/three": "^0.169.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.15",

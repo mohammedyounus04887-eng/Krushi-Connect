@@ -130,3 +130,50 @@ html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;color:var(--i
   .module-next { grid-template-columns: 1fr; gap: 28px; padding: 45px 20px; } .module-next > div > a { font-size: 42px; margin-top: 20px; }
   .module-next > div > a svg { width: 43px; height: 43px; } .next-image { height: 210px; }
 }
+
+/* Consistent utility screens and resilient navigation. */
+.skip-link { position: fixed; top: 12px; left: 20px; z-index: 100; transform: translateY(-150%); background: var(--lime); color: var(--ink); padding: 14px 22px; border: 1px solid var(--ink); }
+.skip-link:focus { transform: translateY(0); }
+.site-main:focus { outline: none; }
+.notification-item { padding: 18px 0; border-top: 1px solid var(--line); }
+.notification-item strong { font-size: 14px; font-weight: 500; }
+.notification-item-actions { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: 13px; }
+.notification-item-actions a { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; border-bottom: 1px solid #838a72; padding-bottom: 3px; }
+.notification-item-actions button { font-size: 11px; background: #e1e6d2; padding: 8px 12px; border-radius: 20px; }
+.notification-item-actions button:hover { background: var(--lime); }
+.desktop-nav a[aria-current=page] { border-bottom: 1px solid; }
+.module-hero-grid > div { min-width: 0; }
+.module-hero-grid h1 { font-size: clamp(50px,6.5vw,104px); text-wrap: balance; }
+.module-section-nav button:focus-visible { outline-offset: -3px; }
+.support-workspace .glass-panel, .support-workspace .glass-card-gold { background-image: none; }
+.support-workspace .workspace-welcome { background: transparent; border-bottom: 1px solid var(--line); padding: 10px 0 45px; }
+.workspace-welcome h1 { font-weight: 400; font-size: clamp(40px,5.5vw,80px); line-height: 1.02; letter-spacing: -.055em; margin: 22px 0; }
+.workspace-welcome a { border-radius: 30px !important; padding: 15px 20px; font-weight: 400; }
+.workspace-welcome a:first-child { background: var(--lime); }
+.support-workspace h1 { color: var(--ink); font-weight: 400; letter-spacing: -.045em; }
+.support-workspace :is(h2,h3).text-white { color: var(--ink); }
+.support-workspace .text-gray-400 { color: #5b6550; }
+.support-workspace .bg-amber-400 { background-color: var(--lime); border-color: #c1d86a; }
+.support-workspace .bg-amber-50 { background-color: #edf0e2; border-color: #cbd3b7; }
+.support-workspace button:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.status-page { padding: 65px 0 95px; max-width: 1000px; }
+.status-page :is(h1,h2) { font-size: clamp(48px,8vw,110px); letter-spacing: -.065em; font-weight: 400; line-height: 1.02; margin: 35px 0; }
+.status-page p { max-width: 490px; font-size: 16px; line-height: 1.7; margin: 0 0 30px; color: #5b6251; }
+.status-page > div { display: flex; align-items: center; gap: 25px; flex-wrap: wrap; }
+.loading-line { height: 3px; width: 160px; background: #d1d7c2; overflow: hidden; margin: 30px 0; }
+.loading-line:after { content: ''; display: block; width: 60%; height: 100%; background: #738923; animation: loading-slide 1.4s ease-in-out infinite; }
+@keyframes loading-slide { from { transform: translateX(-100%); } to { transform: translateX(200%); } }
+@media (min-width: 641px) and (max-width: 1000px) { .module-hero-grid h1 { font-size: 5.7vw; } }
+@media (max-width: 640px) {
+  .header-actions { gap: 4px; } .header-icon { width: 32px; min-height: 40px; }
+  .header-bar { gap: 18px; } .role-select select { max-width: 65px; }
+  .module-hero-grid h1 { font-size: clamp(44px,10.5vw,66px); }
+  .workspace-welcome h1 { font-size: 43px; }
+  .support-workspace .grid.h-\[580px\] { height: auto; min-height: 580px; }
+  .support-workspace .grid.h-\[580px\] > div:first-child { max-height: 230px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .support-workspace .grid.h-\[580px\] > div:last-child { min-height: 440px; min-width: 0; }
+  .support-workspace form input { min-width: 0; width: 100%; }
+  .status-page { padding: 35px 0 60px; }
+  .kc-notifications { top: 68px; right: 12px; width: calc(100vw - 24px); }
+}
+@media (max-width: 360px) { .header-bar { padding-left: 14px; padding-right: 14px; gap: 10px; } .kc-logo { font-size: 23px; } }

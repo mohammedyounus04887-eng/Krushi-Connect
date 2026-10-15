@@ -55,8 +55,8 @@ const initialStore: AppStoreState = {
   messages: SEED_MESSAGES,
 };
 
-export function getInitialState(): AppStoreState {
-  if (typeof window === 'undefined') return initialStore;
+export function getInitialState(readStorage = true): AppStoreState {
+  if (!readStorage || typeof window === 'undefined') return initialStore;
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {

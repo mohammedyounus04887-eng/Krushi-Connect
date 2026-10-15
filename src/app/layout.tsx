@@ -19,8 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen flex flex-col antialiased">
         <AppProvider>
+          <a className="skip-link" href="#main-content">Skip to content</a>
           <Header />
-          <main className="site-main">
+          <main className="site-main" id="main-content" tabIndex={-1}>
             <ModuleExperience>{children}</ModuleExperience>
           </main>
           <Footer />

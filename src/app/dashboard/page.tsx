@@ -9,26 +9,29 @@ import {
 import { useApp } from '@/lib/context';
 
 export default function DashboardPage() {
-  const { currentUser, farms, tasks, alerts, lands, jobs, produce, notifications } = useApp();
+  const { currentUser, farms, tasks, alerts, lands, jobs, produce, applications } = useApp();
 
   const totalFarmAcreage = farms.reduce((acc, f) => acc + f.acreage, 0);
   const pendingTasks = tasks.filter(t => t.status === 'Pending').length;
+  const listedProduceValue = produce.filter(item => item.status === 'available')
+    .reduce((total, item) => total + item.quantityKg * item.pricePerKg, 0);
+  const pendingApplications = applications.filter(item => item.status === 'pending').length;
 
   return (
     <div className="space-y-8 py-2">
       
       {/* Welcome Banner */}
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl border-2 border-agri-400/40 bg-gradient-to-r from-agri-800 via-emerald-700 to-agri-900 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-glow-agri text-white">
+      <div className="workspace-welcome flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="space-y-2">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-400 text-agri-950 text-xs font-black border border-amber-500 shadow-sm">
             <span>Role:</span>
             <span className="capitalize">{currentUser.role}</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-            Good Morning, {currentUser.name} 👋
+          <h1>
+            Good to see you,<br />{currentUser.name}.
           </h1>
-          <p className="text-xs sm:text-sm text-emerald-100/90 font-medium">
-            Welcome to your Central Krushi Operating Dashboard. 7 connected agricultural modules are active.
+          <p className="text-sm text-agri-800">
+            Your land, your people, your next season. All connected.
           </p>
         </div>
 
@@ -57,7 +60,7 @@ export default function DashboardPage() {
         <div className="glass-panel p-5 rounded-2xl border border-agri-300 space-y-3 shadow-sm hover:border-amber-400 transition-all">
           <div className="flex items-center justify-between">
             <span className="text-xs font-black text-agri-700 uppercase tracking-wider">🌾 MY FARMS</span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-agri-100 text-agri-800 border border-agri-300 font-bold">+12% Growth</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-agri-100 text-agri-800 border border-agri-300 font-bold">Field overview</span>
           </div>
           <div>
             <p className="text-2xl font-black text-agri-950">{farms.length} Active Zones</p>
@@ -68,11 +71,11 @@ export default function DashboardPage() {
         {/* Card 2 */}
         <div className="glass-card-gold p-5 rounded-2xl space-y-3 shadow-sm hover:border-amber-500 transition-all">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-black text-amber-800 uppercase tracking-wider">📈 MARKET VALUE</span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-400 text-agri-950 font-black border border-amber-500">↑ 8.4%</span>
+            <span className="text-xs font-black text-amber-800 uppercase tracking-wider">Listed produce value</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-400 text-agri-950 font-black border border-amber-500">Available listings</span>
           </div>
           <div>
-            <p className="text-2xl font-black text-agri-950">₹2,48,500</p>
+            <p className="text-2xl font-black text-agri-950">₹{listedProduceValue.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</p>
             <p className="text-xs text-amber-900 font-bold mt-0.5">{produce.length} Listed Produce Batches</p>
           </div>
         </div>
@@ -81,7 +84,7 @@ export default function DashboardPage() {
         <div className="glass-panel p-5 rounded-2xl border border-agri-300 space-y-3 shadow-sm hover:border-amber-400 transition-all">
           <div className="flex items-center justify-between">
             <span className="text-xs font-black text-amber-700 uppercase tracking-wider">👨‍🌾 LABOUR</span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300 font-bold">2 Pending</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300 font-bold">{pendingApplications} Pending</span>
           </div>
           <div>
             <p className="text-2xl font-black text-agri-950">{jobs.length} Job Requirements</p>

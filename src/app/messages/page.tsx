@@ -14,19 +14,22 @@ export default function MessagesPage() {
 
   const [inputContent, setInputContent] = useState('');
 
-  const activePeer = users.find(u => u.id === selectedUserId) || users[1];
+  const peers = users.filter(user => user.id !== currentUser.id);
+  const activePeer = peers.find(user => user.id === selectedUserId) || peers[0];
 
   const conversationMessages = messages.filter(
-    m => (m.senderId === currentUser.id && m.receiverId === selectedUserId) ||
-         (m.senderId === selectedUserId && m.receiverId === currentUser.id)
+    m => (m.senderId === currentUser.id && m.receiverId === activePeer?.id) ||
+         (m.senderId === activePeer?.id && m.receiverId === currentUser.id)
   );
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputContent.trim()) return;
+    if (!inputContent.trim() || !activePeer) return;
     sendMessage(activePeer.id, activePeer.name, inputContent);
     setInputContent('');
   };
+
+  if (!activePeer) return <div className="status-page"><h1>More connections<br />are on their way.</h1><p>Your conversations will appear here when another contact is available.</p></div>;
 
   return (
     <div className="space-y-6 py-2 text-agri-950">
@@ -39,7 +42,7 @@ export default function MessagesPage() {
           </Link>
           <div>
             <h1 className="text-xl font-black text-agri-950 flex items-center gap-2">
-              💬 Internal Krushi Connect Messaging
+              Good conversations.
             </h1>
             <p className="text-xs text-agri-700 font-medium">Direct communications between Farmers, Landowners, Workers & Buyers.</p>
           </div>
@@ -54,12 +57,12 @@ export default function MessagesPage() {
           <p className="text-[10px] font-black uppercase tracking-wider text-agri-700 font-mono px-2">Ecosystem Contacts</p>
 
           <div className="space-y-1.5">
-            {users.filter(u => u.id !== currentUser.id).map(u => (
+            {peers.map(u => (
               <button
                 key={u.id}
                 onClick={() => setSelectedUserId(u.id)}
                 className={`w-full text-left p-3 rounded-2xl flex items-center space-x-3 transition-all ${
-                  selectedUserId === u.id
+                  activePeer.id === u.id
                     ? 'bg-agri-600 text-white shadow-sm font-bold'
                     : 'hover:bg-agri-100/70 text-agri-950 font-medium'
                 }`}
@@ -69,7 +72,7 @@ export default function MessagesPage() {
                 </div>
                 <div className="truncate">
                   <p className="font-extrabold text-xs truncate">{u.name}</p>
-                  <p className={`text-[10px] capitalize ${selectedUserId === u.id ? 'text-emerald-100' : 'text-agri-700'}`}>{u.role} • {u.location}</p>
+                  <p className={`text-[10px] capitalize ${activePeer.id === u.id ? 'text-emerald-100' : 'text-agri-700'}`}>{u.role} • {u.location}</p>
                 </div>
               </button>
             ))}
@@ -125,6 +128,7 @@ export default function MessagesPage() {
           <form onSubmit={handleSend} className="mt-3 flex items-center space-x-2">
             <input
               type="text"
+              aria-label={`Message ${activePeer.name}`}
               placeholder={`Message ${activePeer.name}...`}
               value={inputContent}
               onChange={e => setInputContent(e.target.value)}
@@ -132,6 +136,7 @@ export default function MessagesPage() {
             />
             <button
               type="submit"
+              disabled={!inputContent.trim()}
               className="px-4 py-2.5 rounded-xl bg-agri-600 text-white font-extrabold text-xs hover:bg-agri-500 transition-colors flex items-center space-x-1 shadow-sm"
             >
               <Send className="w-4 h-4 text-amber-300" />
