@@ -20,7 +20,7 @@
 - **Multi-Role Perspective Switcher**: Test the system as a **Farmer**, **Landowner**, **Agricultural Worker**, **Produce Buyer**, or **System Administrator**.
 - **Internal Direct Messaging**: Integrated live chat connecting Farmers, Landowners, Workers, and Buyers.
 - **Global Notification Center**: Real-time notifications for lease proposals, job applications, market price surges, and weather warnings.
-- **3D Hero Visualizer**: Interactive Three.js / Canvas agricultural landscape with satellite node, field plots, and camera controls.
+- **Editorial interface**: Oversized typography, lime accents, agricultural photography, numbered module navigation, and responsive layouts inspired by Noww.
 - **Admin Governance Console**: Platform analytics, user registry, content moderation tools, and system health status.
 
 ---
@@ -63,4 +63,3 @@ You can switch roles anytime using the top header profile dropdown:
 - [API_DOCUMENTATION.md](API_DOCUMENTATION.md): Complete REST API endpoint reference.
 - [DATABASE_SCHEMA.md](DATABASE_SCHEMA.md): Database tables and entity relationship schema.
 - [DEPLOYMENT.md](DEPLOYMENT.md): Production deployment guide.
-
