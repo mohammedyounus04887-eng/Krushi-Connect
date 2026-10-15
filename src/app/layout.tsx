@@ -3,6 +3,7 @@ import './globals.css';
 import { AppProvider } from '@/lib/context';
 import Header from '@/components/ui/Header';
 import Footer from '@/components/ui/Footer';
+import ModuleExperience from '@/components/ui/ModuleExperience';
 
 export const metadata: Metadata = {
   title: '🌾 KRUSHI CONNECT — "First Serve Farmers"',
@@ -20,7 +21,7 @@ export default function RootLayout({
         <AppProvider>
           <Header />
           <main className="site-main">
-            {children}
+            <ModuleExperience>{children}</ModuleExperience>
           </main>
           <Footer />
         </AppProvider>

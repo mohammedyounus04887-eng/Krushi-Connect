@@ -47,7 +47,7 @@ export default function SchemesPage() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 py-2">
+    <div className="module-app-layout">
       
       {/* Sub-App Sidebar */}
       <ModuleSidebar
@@ -64,14 +64,14 @@ export default function SchemesPage() {
       <div className="flex-1 space-y-6">
         
         {/* Top Disclaimer Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 glass-panel-gold p-5 rounded-2xl">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 glass-card-gold p-5 rounded-2xl">
           <div>
             <div className="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-yellow-500/20 text-yellow-300 text-[10px] font-bold uppercase tracking-wider mb-1 border border-yellow-500/40">
               Information & Guidance Portal
             </div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-white flex items-center gap-2">
               🌾 ₹1 Crop Insurance & Government Scheme Advisor
-            </h1>
+            </h2>
             <p className="text-xs text-gray-300 mt-0.5">
               Simplifying eligibility, document checklists, and application steps for agricultural welfare schemes.
             </p>

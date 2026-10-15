@@ -47,7 +47,7 @@ export default function CropDemandPage() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 py-2">
+    <div className="module-app-layout">
       
       {/* Sub-App Sidebar */}
       <ModuleSidebar
@@ -66,9 +66,9 @@ export default function CropDemandPage() {
         {/* Top Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 glass-panel p-5 rounded-2xl border border-sky-500/20">
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+            <h2 className="text-2xl font-bold text-white flex items-center gap-2">
               📈 AI Crop Demand Intelligence
-            </h1>
+            </h2>
             <p className="text-xs text-gray-400 mt-0.5">
               Predictive market demand modeling based on historical yield, seasonal weather trends, and wholesale mandis.
             </p>

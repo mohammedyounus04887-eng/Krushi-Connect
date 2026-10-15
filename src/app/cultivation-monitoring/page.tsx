@@ -59,7 +59,7 @@ export default function CultivationMonitoringPage() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 py-2">
+    <div className="module-app-layout">
       
       {/* Sub-App Sidebar */}
       <ModuleSidebar
@@ -78,9 +78,9 @@ export default function CultivationMonitoringPage() {
         {/* Top Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 glass-panel p-5 rounded-2xl border border-agri-300 bg-white/95 shadow-sm text-agri-950">
           <div>
-            <h1 className="text-2xl font-black text-agri-950 flex items-center gap-2">
+            <h2 className="text-2xl font-black text-agri-950 flex items-center gap-2">
               🌱 Cultivation & Crop Stage Monitoring
-            </h1>
+            </h2>
             <p className="text-xs text-agri-700 font-medium mt-0.5">
               Track multi-stage crop lifecycle, execute daily field task checklists, and receive pest outbreak warnings.
             </p>
